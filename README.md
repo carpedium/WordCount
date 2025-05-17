@@ -40,30 +40,63 @@
 
 -----
 
-### Installation & Setup 
-##### Using maven
+#### Installation & Setup 
+##### Building Application using Maven
 
 ***Prerequisites:***
 - Java 17, Maven, Git 
 
-****Steps:****
+****create maven build and run application****
 1. `git clone https://github.com/carpedium/wordcount`
 2. `cd wordcount`
 3. `mvn clean package` 
-4. `mvn spring-boot:run` 
 
- 
-##### Using Docker
+
+##### Building Docker image
   
 **Prerequisites:**
-- Docker must be installed on your system.
-
-***Using existing Docker Image***
-**Steps:**
-1. Pull the existing Docker Image from <docker_image_url>
-2. Run the container using:`docker run -p <your-port>:8080 <docker_image_name>`
-
+- Java 17, Maven, Git , Docker
 ***Generate your own Docker Image from code***
-**Steps:**
-1. Repeat Step 1,2,3 of build using maven [Link](#Using maven) 
-2. Run the container using:`docker run -p <your-port>:8080 <docker_image_name>`
+1. Repeat Step 1,2,3 of application build using maven to create jar file
+2. Create Docker image
+    *Using Maven* 
+    - `mvn compile jib:dockerBuild -Ddocker_user=<your_docker_userName>`
+    - optional param : -Ddocker_version
+    
+    *Using Docker* 
+    - `docker build . -t <dockeraccountname>/wordcount:<image_version>`
+    
+##### Execute application using maven
+Build application using maven steps as defined
+`mvn spring-boot:run` 
+*   optional param to override the application port :
+    `-Dspring-boot.run.arguments="--server.port=9090"`
+     
+       
+##### Execute application using existing Docker Image
+1. Pull the existing Docker Image from <docker_image_url>
+2. Run the container using:`docker run -p <your-port>:<app-port> <docker_image_name>`
+
+##### Execute application using Self-built docker image
+1. create Docker Image using steps defined above
+2. Run the container using:`docker run -p <your-port>:<app-port> <docker_image_name>`
+
+##### Verify Test Coverage 
+
+`mvn clean verify -Dcoverage_ratio=<value from 0.00 to 1.00>`
+
+default value=.6
+
+##### Check Test Coverage Report
+`mvn clean test`
+navigate to `target/site/jacoco/index.html`
+
+##### Check Test Case Report
+`mvn clean test`
+navigate to `target/testreport.json`
+
+##### Check API Documentation
+Start the application
+navigate to `http://<server-name>:<port>/swagger-ui/index.html`
+
+
