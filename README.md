@@ -77,8 +77,8 @@
      
        
 ### Execute application using existing Docker Image
-- Pull the existing Docker Image from <docker_image_url>
-- Run the container using:  `docker run -p <your-port>:<app-port> <docker_image_name>`
+- Pull the existing Docker Image `docker pull ankitkumarsingh0000/wordcount:release`
+- Run the container using:  `docker run -d -p <user-port>:8080 ankitkumarsingh0000/wordcount:release`
 
 ### Execute application using Self-built docker image
 - create Docker Image using [steps](https://github.com/carpedium/wordcount/edit/main/README.md#building-docker-image) defined above
