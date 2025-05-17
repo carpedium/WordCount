@@ -62,7 +62,7 @@
 2. Create Docker image
     - **Using maven cli**
     
-		- `mvn compile jib:dockerBuild -Ddocker_tag=<docker_tag>`
+		- `mvn package jib:dockerBuild -Ddocker_tag=<docker_tag>`
 		- optional param : `-Ddocker_version`
     
     - **Using docker cli**
