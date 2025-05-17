@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: "wordcount"
+    
+
+server:
+  port: "8080"
+
+
+info:
+  app:
+    name: "accounts"
+    description: "Eazy Bank Accounts Application"
+    version: "1.0.0"
