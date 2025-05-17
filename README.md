@@ -63,7 +63,7 @@
     - **Using maven cli**
     
 		- `mvn compile jib:dockerBuild -Ddocker_tag=<docker_tag>`
-		- optional param : -Ddocker_version
+		- optional param : `-Ddocker_version`
     
     - **Using docker cli**
     
@@ -93,7 +93,7 @@
 - `mvn clean test`
 - navigate to `target/site/jacoco/index.html`
 
-#### Check Test Case Report
+### Check Test Case Report
 - `mvn clean test`
 - navigate to `target/testreport.json`
 
