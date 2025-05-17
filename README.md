@@ -59,44 +59,45 @@
 ***Generate your own Docker Image from code***
 1. Repeat Step 1,2,3 of application build using maven to create jar file
 2. Create Docker image
-    *Using Maven* 
-    - `mvn compile jib:dockerBuild -Ddocker_user=<your_docker_userName>`
-    - optional param : -Ddocker_version
+    - Using maven cli
     
-    *Using Docker* 
-    - `docker build . -t <dockeraccountname>/wordcount:<image_version>`
+		- `mvn compile jib:dockerBuild -Ddocker_user=<your_docker_userName>`
+		- optional param : -Ddocker_version
+    
+    - Using docker cli
+    
+		- `docker build . -t <dockeraccountname>/wordcount:<image_version>`
     
 ##### Execute application using maven
-Build application using maven steps as defined
+- Build application using maven steps as defined
 `mvn spring-boot:run` 
-*   optional param to override the application port :
+- optional param to override the application port :
     `-Dspring-boot.run.arguments="--server.port=9090"`
      
        
 ##### Execute application using existing Docker Image
-1. Pull the existing Docker Image from <docker_image_url>
-2. Run the container using:`docker run -p <your-port>:<app-port> <docker_image_name>`
+- Pull the existing Docker Image from <docker_image_url>
+- Run the container using:  `docker run -p <your-port>:<app-port> <docker_image_name>`
 
 ##### Execute application using Self-built docker image
-1. create Docker Image using steps defined above
-2. Run the container using:`docker run -p <your-port>:<app-port> <docker_image_name>`
+- create Docker Image using steps defined above
+- Run the container using:  `docker run -p <your-port>:<app-port> <docker_image_name>`
 
 ##### Verify Test Coverage 
 
-`mvn clean verify -Dcoverage_ratio=<value from 0.00 to 1.00>`
-
-default value=.6
+- `mvn clean verify -Dcoverage_ratio=<value from 0.00 to 1.00>`
+- default value=`.6`
 
 ##### Check Test Coverage Report
-`mvn clean test`
-navigate to `target/site/jacoco/index.html`
+- `mvn clean test`
+- navigate to `target/site/jacoco/index.html`
 
 ##### Check Test Case Report
-`mvn clean test`
-navigate to `target/testreport.json`
+- `mvn clean test`
+- navigate to `target/testreport.json`
 
 ##### Check API Documentation
-Start the application
-navigate to `http://<server-name>:<port>/swagger-ui/index.html`
+- Start the application
+- navigate to `http://<server-name>:<port>/swagger-ui/index.html`
 
 
