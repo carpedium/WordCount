@@ -42,7 +42,9 @@ public class WordCountRestController {
 	@ApiResponses({
 
 			@ApiResponse(responseCode = "200", description = "Returns List of words with size >= specified value.", content = @Content(schema = @Schema(implementation = ListWordResponseDto.class))),
-			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
+			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) ,
+			@ApiResponse(responseCode = "400", description = "Empty or Invalid Request body", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
+
 	)
 	@PostMapping("/words")
 	public ResponseEntity<ListWordResponseDto> getWordsWithMinSize(
@@ -60,7 +62,8 @@ public class WordCountRestController {
 	@ApiResponses({
 
 			@ApiResponse(responseCode = "200", description = "Returns number of words with specified starting char(s)", content = @Content(schema = @Schema(implementation = WordCountResponseDto.class))),
-			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
+			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))  ,
+			@ApiResponse(responseCode = "400", description = "Empty or Invalid Request body", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
 	)
 	@PostMapping("/numberofwords")
 	public ResponseEntity<WordCountResponseDto> getWordCountWithChar( 
@@ -77,7 +80,8 @@ public class WordCountRestController {
 	@ApiResponses({
 
 			@ApiResponse(responseCode = "200", description = "Returns result of both /words and /numberofwords operations", content = @Content(schema = @Schema(implementation = SummaryResponseDto.class))),
-			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
+			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))  ,
+			@ApiResponse(responseCode = "400", description = "Empty or Invalid Request body", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
 	)
 	@PostMapping("/summary")
 	public ResponseEntity<SummaryResponseDto> getSummary(
