@@ -195,7 +195,7 @@
 - Java 17, Maven, Git , Docker
 
 ***Steps***
-1. Repeat Step 1,2,3 of application [build using maven](https://github.com/carpedium/wordcount/edit/main/README.md#building-application-using-maven) to create jar file
+1. Repeat Step 1,2,3 of application [build using maven](https://github.com/carpedium/wordcount/blob/main/README.md#building-application-using-maven) to create jar file
 2. Create Docker image
     - **Using maven cli**
     
@@ -218,7 +218,7 @@
 - Run the container using:  `docker run -d -p <user-port>:8080 ankitkumarsingh0000/wordcount:release`
 
 ### Execute application using Self-built docker image
-- create Docker Image using [steps](https://github.com/carpedium/wordcount/edit/main/README.md#building-docker-image) defined above
+- create Docker Image using [steps](https://github.com/carpedium/wordcount/blob/main/README.md#building-docker-image) defined above
 - Run the container using:  `docker run -p <your-port>:<app-port> <docker_image_name>`
 
 ### Verify Test Coverage 
