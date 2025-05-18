@@ -79,12 +79,12 @@
 2. Create Docker image
     - **Using maven cli**
     
-		- `mvn package jib:dockerBuild -Ddocker_tag=<docker_tag>`
+		- `mvn package jib:dockerBuild -Ddocker_tag=<dockerrepo_tag>`
 		- optional param : `-Ddocker_version`
     
     - **Using docker cli**
     
-		- `docker build . -t <docker_tag>/wordcount:<image_version>`
+		- `docker build . -t <dockerrepo_tag>/wordcount:<image_version>`
     
 ### Execute application using maven
 - Build application using maven steps as defined
