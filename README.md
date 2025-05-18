@@ -10,6 +10,8 @@
 - Java 17 and Maven-based build and testing
 - Supports Dockerization
 - Code coverage and testing reports using JaCoCo
+- *0 Code quality smells*
+- Logging suport 
 
 ---
 
@@ -193,7 +195,7 @@
 - Java 17, Maven, Git , Docker
 
 ***Steps***
-1. Repeat Step 1,2,3 of application [build using maven](https://github.com/carpedium/wordcount/edit/main/README.md#building-application-using-maven) to create jar file
+1. Repeat Step 1,2,3 of application [build using maven](https://github.com/carpedium/wordcount/blob/main/README.md#building-application-using-maven) to create jar file
 2. Create Docker image
     - **Using maven cli**
     
@@ -216,7 +218,7 @@
 - Run the container using:  `docker run -d -p <user-port>:8080 ankitkumarsingh0000/wordcount:release`
 
 ### Execute application using Self-built docker image
-- create Docker Image using [steps](https://github.com/carpedium/wordcount/edit/main/README.md#building-docker-image) defined above
+- create Docker Image using [steps](https://github.com/carpedium/wordcount/blob/main/README.md#building-docker-image) defined above
 - Run the container using:  `docker run -p <your-port>:<app-port> <docker_image_name>`
 
 ### Verify Test Coverage 
@@ -226,14 +228,14 @@
 
 ### Check Test Coverage Report
 - `mvn clean test`
-- navigate to `target/site/jacoco/index.html`
+- navigate to `$APP_HOME/target/site/jacoco/index.html`
 
 ### Review Test Cases 
-- check $APP_HOME/src/test/resources/wordCountTestCases.json
+- check `$APP_HOME/src/test/resources/wordCountTestCases.json`
 
 ### Check Test Case Report
 - `mvn clean test`
-- navigate to `target/testreport.json`
+- navigate to `$APP_HOME/target/testreport.json`
 
 ### Check API Documentation
 - Start the application
