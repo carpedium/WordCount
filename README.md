@@ -64,7 +64,7 @@
 - Java 17, Maven, Git 
 
 ***create maven build***
-1. `git clone https://github.com/carpedium/wordcount`
+1. `git clone https://github.com/carpedium/wordcount.git`
 2. `cd wordcount`
 3. `mvn clean package` 
 
