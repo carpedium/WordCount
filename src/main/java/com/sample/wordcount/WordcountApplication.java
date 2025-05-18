@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 
 @OpenAPIDefinition(info = @Info(title = "Count Words Service API Documentation", description = "Application for application/validation of business rules against words", version = "v1", contact = @Contact(name = "Ankit Kumar Singh", email = "ankitkumarsingh.monty@gmail.com")),
 
-		externalDocs = @ExternalDocumentation(description = "Additional Documentation", url = "https://github.com/carpedium/WordCount/blob/main/wordcount/README.md")
+		externalDocs = @ExternalDocumentation(description = "Additional Documentation", url = "https://github.com/carpedium/wordcount/blob/main/README.md")
 
 )
 
