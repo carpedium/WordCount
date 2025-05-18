@@ -30,9 +30,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootTest(classes = WordcountApplication.class)
 @AutoConfigureMockMvc
-public class WordcountApplicationTests {
+@Slf4j
+class WordcountApplicationTests {
 
 	private static final String TARGET_TESTREPORT_JSON = "target/testreport.json";
 	private static final String SUCCESS_STATUS = "SUCCESS";
@@ -47,8 +50,8 @@ public class WordcountApplicationTests {
 	private JsonNode loadTestCase(String filePath) throws Exception {
 		Path path = new ClassPathResource(filePath).getFile().toPath();
 		String json = Files.readString(path);
-		JsonNode root = objectMapper.readTree(json);
-		return root;
+		return objectMapper.readTree(json);
+		 
 	}
 
 	@Test
@@ -80,9 +83,9 @@ public class WordcountApplicationTests {
 
 				String body = mvcResult.getResponse().getContentAsString();
 				JsonNode actualResponse = objectMapper.readTree(body);
-				System.out.println("TestCase Name : "+testCaseName);
-				System.out.println("Actual Status : "+actualResponseStatus+" expectedStatus="+expectedResponse.get("status").asInt());
-				System.out.println("Actual Response : "+actualResponse+", expectedResponse="+expectedResponse.get("body"));
+				log.debug("TestCase Name : "+testCaseName);
+				log.debug("Actual Status : "+actualResponseStatus+" expectedStatus="+expectedResponse.get("status").asInt());
+				log.debug("Actual Response : "+actualResponse+", expectedResponse="+expectedResponse.get("body"));
 
 
 				assertEquals(actualResponseStatus, expectedResponse.get("status").asInt());
@@ -139,8 +142,7 @@ public class WordcountApplicationTests {
 		default:
 			throw new IllegalArgumentException("Unsupported HTTP method: " + method);
 		}
-		;
-
+	
 		return requestBuilder;
 	}
 }

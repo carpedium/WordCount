@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.sample.wordcount.exception.types.InvalidInputException;
 
 @SpringBootTest
-public class InvalidInputExceptionTest {
+class InvalidInputExceptionTest {
 
 	@Test
 	@DisplayName("getSummary 1 : test with default char=M, Len=5")
-	public void test_InvalidInputExceptionTest() throws Exception {
+	void test_InvalidInputExceptionTest() {
 
 		InvalidInputException ex = new InvalidInputException(ErrorConstants.REQUEST_BODY_EMPTY_CODE, ErrorConstants.REQUEST_BODY_EMPTY_MSG);
 		
