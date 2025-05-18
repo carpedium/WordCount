@@ -33,6 +33,17 @@
 		"name": "TestCase_7",
 		"request": { "method": "POST", "url": "/wordcount/summary?prefix=X&minlen=2", "body": { "inputList": [ ] } },
 		"expectedResponse": { "status": 400, "body": { "inputList": "There are no words in the input"} }
+	},
+	{
+		"name": "TestCase_8",
+		"request": { "method": "POST", "url": "/wordcount/summary", "body": "" },
+		"expectedResponse": { "status": 400, "body": { "appErrorCode": "ERR02", "appErrorMessage": "Request Body is incorrect. Please refer to Readme.md" } }
+	}
+	,
+	{
+		"name": "TestCase_9",
+		"request": { "method": "POST", "url": "/wordcount/summary", "body": { "inputList": [ "word1", ["word1", "word2" ] ] } },
+		"expectedResponse": { "status": 400, "body": { "appErrorCode": "ERR02", "appErrorMessage": "Request Body is incorrect. Please refer to Readme.md" } }
 	}
 
 ]	

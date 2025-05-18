@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-		
+
 		Map<String, String> validationErrors = new HashMap<>();
 		List<ObjectError> validationErrorList = ex.getBindingResult().getAllErrors();
 
@@ -45,9 +45,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			validationErrors.put(fieldName, validationMsg);
 		});
 		return new ResponseEntity<>(validationErrors, HttpStatus.BAD_REQUEST);
-	}	
-	
-		
+	}
+
+	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+
+		ErrorResponseDto errDto = new ErrorResponseDto(ErrorConstants.REQUEST_BODY_INVALID_CODE,
+				ErrorConstants.REQUEST_BODY_INVALID_MSG);
+		return new ResponseEntity<>(errDto, HttpStatus.BAD_REQUEST);
+	}
+
 	/* CustomHandling of Custom Exception */
 	@ExceptionHandler(value = { InvalidInputException.class })
 	public ResponseEntity<ErrorResponseDto> handleInvalidInputException(InvalidInputException e) {
@@ -55,12 +62,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		ErrorResponseDto errDto = new ErrorResponseDto(e.getErrorCode(), e.getMessage());
 		return new ResponseEntity<ErrorResponseDto>(errDto, HttpStatus.BAD_REQUEST);
 	}
-	
-	/* CustomHandling of All Unknown Exceptions */	
+
+	/* CustomHandling of All Unknown Exceptions */
 	@ExceptionHandler(value = { Exception.class })
 	public ResponseEntity<ErrorResponseDto> handleAllException(Exception e) {
-		ErrorResponseDto errDto = new ErrorResponseDto(ErrorConstants.UNKNOWN_ERROR_CODE, ErrorConstants.UNKNOWN_ERROR_MSG);
+		ErrorResponseDto errDto = new ErrorResponseDto(ErrorConstants.UNKNOWN_ERROR_CODE,
+				ErrorConstants.UNKNOWN_ERROR_MSG);
 		return new ResponseEntity<ErrorResponseDto>(errDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 }

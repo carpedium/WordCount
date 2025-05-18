@@ -29,7 +29,7 @@ public class InputDto {
 	@Schema(
 			name = "inputList", 
 			description = "List of Input words. a sentence with multiple words like \"word_3 word_4\" in example is also valid",
-			example = "[ \"word_1\", \"word_2\", \"word_3 word_4\" ]")
+			example = "[ \"mama\", \"momo\", \"maka m@123\" ]")
 	@NotNull(message = ErrorConstants.INPUT_LIST_NULL_MSG)
 	@NotEmpty(message = ErrorConstants.INPUT_LIST_EMPTY_MSG)
 	List<String> inputList;
