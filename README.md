@@ -226,14 +226,14 @@
 
 ### Check Test Coverage Report
 - `mvn clean test`
-- navigate to `target/site/jacoco/index.html`
+- navigate to `$APP_HOME/target/site/jacoco/index.html`
 
 ### Review Test Cases 
-- check $APP_HOME/src/test/resources/wordCountTestCases.json
+- check `$APP_HOME/src/test/resources/wordCountTestCases.json`
 
 ### Check Test Case Report
 - `mvn clean test`
-- navigate to `target/testreport.json`
+- navigate to `$APP_HOME/target/testreport.json`
 
 ### Check API Documentation
 - Start the application
