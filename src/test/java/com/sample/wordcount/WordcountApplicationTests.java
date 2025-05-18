@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @AutoConfigureMockMvc
 public class WordcountApplicationTests {
 
+	private static final String TARGET_TESTREPORT_JSON = "target/testreport.json";
 	private static final String SUCCESS_STATUS = "SUCCESS";
 	private static final String FAIL_STATUS = "FAIL";
 
@@ -53,12 +55,14 @@ public class WordcountApplicationTests {
 	void testUsingRequestResponseFile() throws Exception {
 		JsonNode testCases = loadTestCase("wordCountTestCases.json");
 
-		List<JsonNode> resultSet = new LinkedList<JsonNode>();
+		List<JsonNode> resultSet = new LinkedList<>();
+		List<String> failSet = new LinkedList<>();
 
 		for (JsonNode testCase : testCases) {
 
 			ObjectNode resultNode = objectMapper.createObjectNode();
-			resultNode.put("name", testCase.get("name").asText());
+			String testCaseName = testCase.get("name").asText();
+			resultNode.put("name", testCaseName);
 
 			try {
 				JsonNode request = testCase.get("request");
@@ -76,6 +80,10 @@ public class WordcountApplicationTests {
 
 				String body = mvcResult.getResponse().getContentAsString();
 				JsonNode actualResponse = objectMapper.readTree(body);
+				System.out.println("TestCase Name : "+testCaseName);
+				System.out.println("Actual Status : "+actualResponseStatus+" expectedStatus="+expectedResponse.get("status").asInt());
+				System.out.println("Actual Response : "+actualResponse+", expectedResponse="+expectedResponse.get("body"));
+
 
 				assertEquals(actualResponseStatus, expectedResponse.get("status").asInt());
 				assertEquals(actualResponse, expectedResponse.get("body"));
@@ -86,15 +94,21 @@ public class WordcountApplicationTests {
 				ex.printStackTrace();
 				resultNode.put("status", FAIL_STATUS);
 				resultNode.put("errorMsg", ex.getMessage());
-
+				failSet.add(testCaseName);
 			}
 
 			resultSet.add(resultNode);
 		}
 
-		File file = new File("target/testreport.json");
+		File file = new File(TARGET_TESTREPORT_JSON);
 		try (FileWriter writer = new FileWriter(file, false)) {
 			objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, resultSet);
+		}
+		
+		if(!failSet.isEmpty()) {
+			String msg= failSet.stream().collect(Collectors.joining(", "))
+					+ " have failed, please see Test Report at $APP_HOME/TARGET_TESTREPORT_JSON";
+			throw new AssertionError(msg);
 		}
 	}
 

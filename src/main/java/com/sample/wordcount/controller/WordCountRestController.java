@@ -43,9 +43,7 @@ public class WordCountRestController {
 
 			@ApiResponse(responseCode = "200", description = "Returns List of words with size >= specified value.", content = @Content(schema = @Schema(implementation = ListWordResponseDto.class))),
 			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
-
 	)
-
 	@PostMapping("/words")
 	public ResponseEntity<ListWordResponseDto> getWordsWithMinSize(
 			@Valid @RequestBody InputDto iDto,
@@ -59,17 +57,15 @@ public class WordCountRestController {
 	
 	
 	@Operation(summary = "Count no of words", description = "Counts number of input words with specified starting char(s). Default starting char=M")
-
 	@ApiResponses({
 
 			@ApiResponse(responseCode = "200", description = "Returns number of words with specified starting char(s)", content = @Content(schema = @Schema(implementation = WordCountResponseDto.class))),
 			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
 	)
 	@PostMapping("/numberofwords")
-
 	public ResponseEntity<WordCountResponseDto> getWordCountWithChar( 
 			@Valid @RequestBody InputDto iDto,
-			@RequestParam(name = "startingchar", defaultValue = "M", required = false) String startingChar) {
+			@RequestParam(name = "prefix", defaultValue = "M", required = false) String startingChar) {
 
 		WordCountResponseDto respDto = wService.getWordCount(startingChar, iDto);
 		return new ResponseEntity<WordCountResponseDto>(respDto, HttpStatus.OK);
@@ -78,17 +74,15 @@ public class WordCountRestController {
 	
 
 	@Operation(summary = "Summary operation", description = "This operation is a consolidation of /words and /numberofwords api. Please refer to respective endpoint Documentation for more details")
-
 	@ApiResponses({
 
 			@ApiResponse(responseCode = "200", description = "Returns result of both /words and /numberofwords operations", content = @Content(schema = @Schema(implementation = SummaryResponseDto.class))),
 			@ApiResponse(responseCode = "500", description = "Input Error Code and Message", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) }
 	)
-
 	@PostMapping("/summary")
 	public ResponseEntity<SummaryResponseDto> getSummary(
 			@Valid @RequestBody InputDto iDto,
-			@RequestParam(name = "startingchar", defaultValue = "M", required = false) String inputchar,
+			@RequestParam(name = "prefix", defaultValue = "M", required = false) String inputchar,
 			@RequestParam(name = "minlen",  defaultValue = "5", required = false) Integer length) {
 
 		SummaryResponseDto respDto = wService.getSummary(iDto, inputchar, length);

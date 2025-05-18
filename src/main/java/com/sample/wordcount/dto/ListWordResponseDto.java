@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -24,12 +25,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class ListWordResponseDto {
 
+	@JsonProperty("minlen")
 	@Schema(
-			name = "minLength", 
+			name = "minlen", 
 			description = "Input min length of String that would be used to get result set. if not provided, default value 5 would be used",
 			example = "5")
 	Integer minLength;
 
+	@JsonProperty("wordsWithSize")
 	@Schema(
 			name = "wordsWithSize", 
 			description = "Result list of words with min length as specified in input (default=5)",

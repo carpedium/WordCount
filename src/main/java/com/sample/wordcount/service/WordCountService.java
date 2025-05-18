@@ -52,7 +52,7 @@ public class WordCountService {
 		int len = length.intValue() ; // Integer.parseInt(length);
 		return list.stream()
 		.flatMap( x -> Arrays.stream(x.split("\\s")) )
-		.filter ( x->x.length() >= len)
+		.filter ( x->x.length() > len)
 		.collect( Collectors.toCollection(LinkedList::new) );
 		
 	}

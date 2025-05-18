@@ -2,37 +2,37 @@
 	{
 		"name": "TestCase_1",
 		"request": { "method": "POST", "url": "/wordcount/words", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "minLength": 5, "wordsWithSize": [ "m@123" ] } }
+		"expectedResponse": { "status": 200, "body": { "minlen": 5, "wordsWithSize": [  ] } }
 	},
 	{
 		"name": "TestCase_2",
 		"request": { "method": "POST", "url": "/wordcount/words?minlen=3", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "minLength": 3, "wordsWithSize": [ "mama", "momo", "m@123" ] } }
+		"expectedResponse": { "status": 200, "body": { "minlen": 3, "wordsWithSize": [ "mama", "momo", "m@123" ] } }
 	},
 	{
 		"name": "TestCase_3",
 		"request": { "method": "POST", "url": "/wordcount/numberofwords", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "startingChar": "M", "wordCountStartingWithInputChar": 3 } }
+		"expectedResponse": { "status": 200, "body": { "prefix": "M", "wordCountStartingWithInputChar": 3 } }
 	},
 	{
 		"name": "TestCase_4",
-		"request": { "method": "POST", "url": "/wordcount/numberofwords?startingchar=A", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "startingChar": "A", "wordCountStartingWithInputChar": 0 } }
+		"request": { "method": "POST", "url": "/wordcount/numberofwords?prefix=A", "body": { "inputList": [ "mama momo", "m@123" ] } },
+		"expectedResponse": { "status": 200, "body": { "prefix": "A", "wordCountStartingWithInputChar": 0 } }
 	},
 	{
 		"name": "TestCase_5",
 		"request": { "method": "POST", "url": "/wordcount/summary", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "startingChar": "M", "wordCountStartingWithInputChar": 3, "minLength": 5, "wordsWithSize": [ "m@123" ] } }
-	},
-	{
-		"name": "TestCase_5",
-		"request": { "method": "POST", "url": "/wordcount/summary?startingchar=X&minlen=2", "body": { "inputList": [ "mama momo", "m@123" ] } },
-		"expectedResponse": { "status": 200, "body": { "startingChar": "X", "wordCountStartingWithInputChar": 0, "minLength": 2, "wordsWithSize": [ "mama", "momo", "m@123" ] } }
+		"expectedResponse": { "status": 200, "body": { "prefix": "M", "wordCountStartingWithInputChar": 3, "minlen": 5, "wordsWithSize": [ ] } }
 	},
 	{
 		"name": "TestCase_6",
-		"request": { "method": "POST", "url": "/wordcount/summary?startingchar=X&minlen=2", "body": { "inputList": [ ] } },
+		"request": { "method": "POST", "url": "/wordcount/summary?prefix=X&minlen=2", "body": { "inputList": [ "mama momo", "m@123" ] } },
+		"expectedResponse": { "status": 200, "body": { "prefix": "X", "wordCountStartingWithInputChar": 0, "minlen": 2, "wordsWithSize": [ "mama", "momo", "m@123" ] } }
+	},
+	{
+		"name": "TestCase_7",
+		"request": { "method": "POST", "url": "/wordcount/summary?prefix=X&minlen=2", "body": { "inputList": [ ] } },
 		"expectedResponse": { "status": 400, "body": { "inputList": "There are no words in the input"} }
 	}
 
-]
+]	

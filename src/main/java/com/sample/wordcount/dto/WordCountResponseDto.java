@@ -1,6 +1,7 @@
 package com.sample.wordcount.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,9 +21,11 @@ import lombok.Data;
 @JsonInclude(Include.NON_NULL)
 public class WordCountResponseDto {
 
-	@Schema(name = "startingChar", description = "Starting char (case-insensitive) to check against input strings (default=M/m). " , example = "A")
-	String startingChar;
+	@JsonProperty("prefix")
+	@Schema(name = "prefix", description = "Starting char (case-insensitive) to check against input strings (default=M/m). " , example = "A")
+	String startPrefix;
 
+	@JsonProperty("wordCountStartingWithInputChar")
 	@Schema(name ="wordCountStartingWithInputChar", description = "No of words starting with given input char", example = "10")
 	Long wordCountStartingWithInputChar;
 }
