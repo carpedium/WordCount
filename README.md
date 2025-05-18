@@ -141,7 +141,7 @@
 
    ***CLI Sample 2:***       
 	
-	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=MA' \
+	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=Ma' \
  	-H 'accept: application/json' -H 'Content-Type: application/json' \
 	-d '{ "inputList": [ "mama", "momo", "maka m@123" ] }'
 	 
@@ -156,7 +156,7 @@
 
    ***CLI Sample 3:***       
 	
-	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=MA&minlen=4' \
+	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=Ma&minlen=4' \
  	-H 'accept: application/json' -H 'Content-Type: application/json' \
 	-d '{ "inputList": [ "mama", "momo", "maka m@123" ] }'
 	 
