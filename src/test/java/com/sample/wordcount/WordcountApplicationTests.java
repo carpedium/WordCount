@@ -110,7 +110,7 @@ class WordcountApplicationTests {
 		
 		if(!failSet.isEmpty()) {
 			String msg= failSet.stream().collect(Collectors.joining(", "))
-					+ " have failed, please see Test Report at $APP_HOME/TARGET_TESTREPORT_JSON";
+					+ " have failed, please see Test Report at $APP_HOME/"+TARGET_TESTREPORT_JSON;
 			throw new AssertionError(msg);
 		}
 	}
