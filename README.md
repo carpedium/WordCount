@@ -111,6 +111,66 @@
 	"wordCountStartingWithInputChar": 2
 	}
 
+### 3. perform operation 1( get words of min length) and operation 2 (get words of input prefix) together
+
+   **Endpoint:**   `POST /wordcount/summary`  
+   
+   **optional parameters:**
+   -	`prefix=<Char or Starting String>` example `/wordcount/summary?prefix=MA`
+   -	`minlen=<Integer>` example `/wordcount/summary?minlen=3`
+   
+   **Description:**
+   - performs operation of both `/wordcount/words ` and `/wordcount/numberofwords ` and sends consolidated response.
+   - all rules of the respective APIs are inherited. Example : default `minlen=5` and `prefix=M`
+   - optional parameters of the respective apis can be used together as well as respectively.
+
+ ***CLI Sample 1:***     
+	
+	curl -X 'POST' 'http://localhost:8080/wordcount/summary' \ 
+ 	-H 'accept: application/json' \ -H 'Content-Type: application/json' \
+	-d '{ "inputList": [ "mama", "momo", "maka m@123" ] }'
+	 
+ ***Output***   
+  
+	{
+	"prefix": "M",
+	"wordCountStartingWithInputChar": 4,
+	"minlen": 5,
+	"wordsWithSize": []
+	}
+
+   ***CLI Sample 2:***       
+	
+	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=MA' \ 
+ 	-H 'accept: application/json' \ -H 'Content-Type: application/json' \
+	-d '{ "inputList": [ "mama", "momo", "maka m@123" ] }'
+	 
+ ***Output***   
+  
+	{
+	"prefix": "Ma",
+	"wordCountStartingWithInputChar": 2,
+	"minlen": 5,
+	"wordsWithSize": []
+	}
+
+   ***CLI Sample 3:***       
+	
+	curl -X 'POST' 'http://localhost:8080/wordcount/summary?prefix=MA&minlen=4' \ 
+ 	-H 'accept: application/json' \ -H 'Content-Type: application/json' \
+	-d '{ "inputList": [ "mama", "momo", "maka m@123" ] }'
+	 
+ ***Output***   
+  
+	{
+	"prefix": "Ma",
+	"wordCountStartingWithInputChar": 2,
+	"minlen": 4,
+	"wordsWithSize": [
+        	"m@123"
+    	]
+	}
+   
 
      
 -----
