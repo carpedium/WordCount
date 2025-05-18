@@ -10,6 +10,8 @@
 - Java 17 and Maven-based build and testing
 - Supports Dockerization
 - Code coverage and testing reports using JaCoCo
+- *0 Code quality smells*
+- Logging suport 
 
 ---
 
