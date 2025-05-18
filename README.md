@@ -38,6 +38,23 @@
    - prefix can be a single Char or a string as well. example : 'B' or  "AB"
    - Default start=` "M" `
 
+## Input Rules
+
+   **Valid input:**
+   - Input contains a list of words
+   - group of words like "word1 word2" is also a valid member of input list
+   - you can use both alphanumeric and non-alphanumeric characters in the input.
+
+   ***Sample Input***
+     `{ "inputList": [  "mama", "momo", "maka macha" ] }`
+
+ **Invalid input:**
+   - Nested Lists are not considered a valid input
+
+   ***Sample Invalid Input***
+     `{ "inputList": [  "mama", "momo", ["maka macha"] ] }`
+     
+     
 -----
 
 ## Installation & Setup 
@@ -92,6 +109,9 @@
 ### Check Test Coverage Report
 - `mvn clean test`
 - navigate to `target/site/jacoco/index.html`
+
+### Review Test Cases 
+- check $APP_HOME/src/test/resources/wordCountTestCases.json
 
 ### Check Test Case Report
 - `mvn clean test`
