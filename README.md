@@ -31,7 +31,7 @@
 
    **Endpoint:**   `POST /wordcount/numberofwords`  
    
-   **optional parameters:**   `start=<Char or Starting String>` example `?start=A`
+   **optional parameters:**   `prefix=<Char or Starting String>` example `?prefix=A`
    
    **Description:**
    - Returns the count of words from the input that start with the given string (case-sensitive).
